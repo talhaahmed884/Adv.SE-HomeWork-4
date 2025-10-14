@@ -15,6 +15,8 @@ public class TestCases {
         Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertNotEquals(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertInstanceOf(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(OnlinePaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(BitcoinPaymentChannel.class, paymentChannel);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
@@ -33,6 +35,8 @@ public class TestCases {
         Assertions.assertInstanceOf(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertNotEquals(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertInstanceOf(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(OnlinePaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(BitcoinPaymentChannel.class, paymentChannel);
 
         System.setOut(printStream);
         paymentChannel.makePayment();
@@ -52,6 +56,8 @@ public class TestCases {
         Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertNotEquals(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertInstanceOf(OnlinePaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(BitcoinPaymentChannel.class, paymentChannel);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(outputStream);
@@ -70,6 +76,51 @@ public class TestCases {
         Assertions.assertInstanceOf(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertNotEquals(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertInstanceOf(OnlinePaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(BitcoinPaymentChannel.class, paymentChannel);
+
+        System.setOut(printStream);
+        paymentChannel.makePayment();
+        correctNotificationMessage = String.format(ChannelMessages.NOTIFICATION_CHANNEL_MESSAGE + "\n\n", NotificationChannelType.SMS_CHANNEL);
+        Assertions.assertEquals(correctPaymentMessage + correctNotificationMessage, outputStream.toString());
+        System.setOut(oldStream);
+
+        oldStream.close();
+        printStream.close();
+    }
+
+    @Test
+    public void BitcoinPaymentTest() {
+        PaymentChannel paymentChannel = new BitcoinPaymentChannel(new EmailNotificationChannel());
+        Assertions.assertEquals(PaymentChannelType.BIT_COIN_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertNotEquals(PaymentChannelType.ONLINE_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertNotEquals(PaymentChannelType.CASH_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
+        Assertions.assertNotEquals(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
+        Assertions.assertInstanceOf(BitcoinPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(OnlinePaymentChannel.class, paymentChannel);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+        PrintStream oldStream = System.out;
+        paymentChannel.makePayment();
+        String correctPaymentMessage = String.format(ChannelMessages.PAYMENT_CHANNEL_MESSAGE + "\n", PaymentChannelType.BIT_COIN_PAYMENT_CHANNEL);
+        String correctNotificationMessage = String.format(ChannelMessages.NOTIFICATION_CHANNEL_MESSAGE + "\n\n", NotificationChannelType.EMAIL_CHANNEL);
+        Assertions.assertEquals(correctPaymentMessage + correctNotificationMessage, outputStream.toString());
+        System.setOut(oldStream);
+        outputStream.reset();
+
+        paymentChannel = new BitcoinPaymentChannel(new SMSNotificationChannel());
+        Assertions.assertEquals(PaymentChannelType.BIT_COIN_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertNotEquals(PaymentChannelType.ONLINE_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertNotEquals(PaymentChannelType.CASH_PAYMENT_CHANNEL, paymentChannel.getPaymentChannelType());
+        Assertions.assertInstanceOf(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
+        Assertions.assertNotEquals(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
+        Assertions.assertInstanceOf(BitcoinPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(CashPaymentChannel.class, paymentChannel);
+        Assertions.assertNotEquals(OnlinePaymentChannel.class, paymentChannel);
 
         System.setOut(printStream);
         paymentChannel.makePayment();

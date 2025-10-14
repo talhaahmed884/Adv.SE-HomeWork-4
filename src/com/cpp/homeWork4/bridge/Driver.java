@@ -20,6 +20,20 @@ public class Driver {
 //        cash payment with SMS notification channel
         PaymentChannel paymentChannel4 = new CashPaymentChannel(new SMSNotificationChannel());
         paymentChannel4.makePayment();
+        System.out.println("----------------------------------------------\n");
+
+        System.out.println("Part 2");
         System.out.println("----------------------------------------------");
+        System.out.println();
+
+//        bitcoin payment with Email notification channel
+        PaymentChannel paymentChannel5 = new BitcoinPaymentChannel(new EmailNotificationChannel());
+        paymentChannel5.makePayment();
+
+//        bitcoin payment with SMS notification channel
+        PaymentChannel paymentChannel6 = new BitcoinPaymentChannel(new SMSNotificationChannel());
+        paymentChannel6.makePayment();
+
+        System.out.println("----------------------------------------------\n");
     }
 }
