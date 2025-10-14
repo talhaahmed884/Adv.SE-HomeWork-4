@@ -35,5 +35,23 @@ public class Driver {
         paymentChannel6.makePayment();
 
         System.out.println("----------------------------------------------\n");
+
+        System.out.println("Part 3");
+        System.out.println("----------------------------------------------");
+        System.out.println();
+
+//        online payment with Push message notification channel
+        PaymentChannel paymentChannel7 = new OnlinePaymentChannel(new PushMessageNotificationChannel());
+        paymentChannel7.makePayment();
+
+//        cash payment with Push message notification channel
+        PaymentChannel paymentChannel8 = new OnlinePaymentChannel(new PushMessageNotificationChannel());
+        paymentChannel8.makePayment();
+
+//        bitcoin payment with Push message notification channel
+        PaymentChannel paymentChannel9 = new OnlinePaymentChannel(new PushMessageNotificationChannel());
+        paymentChannel9.makePayment();
+
+        System.out.println("----------------------------------------------\n");
     }
 }

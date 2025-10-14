@@ -2,7 +2,8 @@ package com.cpp.homeWork4.bridge;
 
 public enum NotificationChannelType {
     EMAIL_CHANNEL("Email channel"),
-    SMS_CHANNEL("SMS channel");
+    SMS_CHANNEL("SMS channel"),
+    PUSH_MESSAGE_CHANNEL("Push Message channel");
 
     private final String displayName;
 
