@@ -45,11 +45,11 @@ public class Driver {
         paymentChannel7.makePayment();
 
 //        cash payment with Push message notification channel
-        PaymentChannel paymentChannel8 = new OnlinePaymentChannel(new PushMessageNotificationChannel());
+        PaymentChannel paymentChannel8 = new CashPaymentChannel(new PushMessageNotificationChannel());
         paymentChannel8.makePayment();
 
 //        bitcoin payment with Push message notification channel
-        PaymentChannel paymentChannel9 = new OnlinePaymentChannel(new PushMessageNotificationChannel());
+        PaymentChannel paymentChannel9 = new BitcoinPaymentChannel(new PushMessageNotificationChannel());
         paymentChannel9.makePayment();
 
         System.out.println("----------------------------------------------\n");
