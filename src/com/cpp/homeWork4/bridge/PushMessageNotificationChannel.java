@@ -5,4 +5,9 @@ public class PushMessageNotificationChannel implements NotificationChannel {
     public void deliverNotification() {
         System.out.printf((ChannelMessages.NOTIFICATION_CHANNEL_MESSAGE) + "\n", NotificationChannelType.PUSH_MESSAGE_CHANNEL);
     }
+
+    @Override
+    public String toString() {
+        return NotificationChannelType.PUSH_MESSAGE_CHANNEL.toString();
+    }
 }
