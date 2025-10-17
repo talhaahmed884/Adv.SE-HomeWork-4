@@ -11,6 +11,10 @@ public enum LoyaltyStatuses {
     private final double discount;
 
     LoyaltyStatuses(String displayName, double discount) {
+        if (displayName == null) {
+            throw new IllegalArgumentException("The 'displayName' parameter cannot be null");
+        }
+
         this.displayName = displayName;
         this.discount = discount;
     }

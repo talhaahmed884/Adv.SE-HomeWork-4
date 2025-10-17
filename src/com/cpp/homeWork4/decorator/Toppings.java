@@ -8,6 +8,10 @@ public enum Toppings {
     private final String displayName;
 
     Toppings(String displayName) {
+        if (displayName == null) {
+            throw new IllegalArgumentException("The 'displayName' parameter cannot be null");
+        }
+
         this.displayName = displayName;
     }
 

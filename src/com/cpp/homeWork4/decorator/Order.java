@@ -10,10 +10,18 @@ public class Order {
     }
 
     public void addItem(Item item) {
+        if (item == null) {
+            throw new IllegalArgumentException("The 'item' parameter cannot be null");
+        }
+
         items.add(item);
     }
 
     public void printReceipt(LoyaltyStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("The 'status' parameter cannot be null");
+        }
+
         int counter = 0;
         for (Item item : items) {
             counter++;
@@ -26,6 +34,10 @@ public class Order {
     }
 
     public double calculateBill(LoyaltyStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("The 'status' parameter cannot be null");
+        }
+
         double totalPrice = 0.0;
         for (Item item : items) {
             totalPrice += item.getPrice();

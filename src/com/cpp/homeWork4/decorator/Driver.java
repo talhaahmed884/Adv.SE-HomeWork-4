@@ -1,7 +1,6 @@
 package com.cpp.homeWork4.decorator;
 
 public class Driver {
-    //    TODO: add error handling
     public static void main(String[] args) {
 //        Order-1
         System.out.println("Order-1");

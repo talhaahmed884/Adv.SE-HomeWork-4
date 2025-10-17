@@ -4,6 +4,10 @@ public abstract class LoyaltyStatus {
     protected LoyaltyStatuses status;
 
     protected LoyaltyStatus(LoyaltyStatuses status) {
+        if (status == null) {
+            throw new IllegalArgumentException("The 'status' parameter cannot be null");
+        }
+
         this.status = status;
     }
 

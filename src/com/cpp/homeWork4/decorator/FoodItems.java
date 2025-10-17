@@ -8,6 +8,10 @@ public enum FoodItems {
     private final String displayName;
 
     FoodItems(String displayName) {
+        if (displayName == null) {
+            throw new IllegalArgumentException("The 'displayName' parameter cannot be null");
+        }
+
         this.displayName = displayName;
     }
 
