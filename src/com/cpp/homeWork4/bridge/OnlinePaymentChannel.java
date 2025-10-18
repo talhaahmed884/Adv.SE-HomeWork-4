@@ -4,10 +4,20 @@ public class OnlinePaymentChannel extends PaymentChannel {
     private final OnlinePaymentChannelType type;
 
     public OnlinePaymentChannel(String orderID, NotificationChannel notificationChannel, OnlinePaymentChannelType type) {
+        this.validateInputs(orderID, notificationChannel, type);
         this.notificationChannel = notificationChannel;
         this.paymentChannel = PaymentChannelType.ONLINE_PAYMENT_CHANNEL;
         this.type = type;
         this.orderID = orderID;
+    }
+
+    private void validateInputs(String orderID, NotificationChannel notificationChannel, OnlinePaymentChannelType type) {
+        if (orderID == null)
+            throw new IllegalArgumentException("The parameter 'orderID' cannot be null");
+        if (notificationChannel == null)
+            throw new IllegalArgumentException("The parameter 'notificationChannel' cannot be null");
+        if (type == null)
+            throw new IllegalArgumentException("The parameter 'type' cannot be null");
     }
 
     @Override

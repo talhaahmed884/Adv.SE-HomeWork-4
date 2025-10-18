@@ -14,6 +14,9 @@ public class TestCases {
         Assertions.assertInstanceOf(CashPaymentChannel.class, paymentChannel);
         Assertions.assertEquals("1031", paymentChannel.getOrderID());
         Assertions.assertEquals("markZane@gmail.com", paymentChannel.getNotificationChannel().getRecipient());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new CashPaymentChannel(null, new EmailNotificationChannel("markZane@gmail.com")));
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new CashPaymentChannel("1034", null));
     }
 
     @Test
@@ -23,6 +26,8 @@ public class TestCases {
         Assertions.assertEquals(NotificationChannelType.EMAIL_CHANNEL.toString(), paymentChannel.getNotificationChannel().toString());
         Assertions.assertEquals("markZane@gmail.com", paymentChannel.getNotificationChannel().getRecipient());
         Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new EmailNotificationChannel(null));
     }
 
     @Test
@@ -33,6 +38,8 @@ public class TestCases {
         Assertions.assertEquals("1041", paymentChannel.getOrderID());
         Assertions.assertEquals("9148529184", paymentChannel.getNotificationChannel().getRecipient());
         Assertions.assertInstanceOf(SMSNotificationChannel.class, paymentChannel.getNotificationChannel());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new SMSNotificationChannel(null));
     }
 
     @Test
@@ -43,6 +50,8 @@ public class TestCases {
         Assertions.assertEquals("1041", paymentChannel.getOrderID());
         Assertions.assertEquals("ID:Mark-Zac", paymentChannel.getNotificationChannel().getRecipient());
         Assertions.assertInstanceOf(PushMessageNotificationChannel.class, paymentChannel.getNotificationChannel());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new PushMessageNotificationChannel(null));
     }
 
     @Test
@@ -103,6 +112,10 @@ public class TestCases {
         Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertEquals("1041", paymentChannel.getOrderID());
         Assertions.assertEquals("markZac@gmail.com", paymentChannel.getNotificationChannel().getRecipient());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new OnlinePaymentChannel(null, new EmailNotificationChannel("markZac@gmail.com"), OnlinePaymentChannelType.CREDIT_CARD_PAYMENT_CHANNEL));
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new OnlinePaymentChannel("1041", null, OnlinePaymentChannelType.CREDIT_CARD_PAYMENT_CHANNEL));
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new OnlinePaymentChannel("1041", new EmailNotificationChannel("markZac@gmail.com"), null));
     }
 
     @Test
@@ -191,6 +204,9 @@ public class TestCases {
         Assertions.assertInstanceOf(EmailNotificationChannel.class, paymentChannel.getNotificationChannel());
         Assertions.assertEquals("1041", paymentChannel.getOrderID());
         Assertions.assertEquals("markZac@gmail.com", paymentChannel.getNotificationChannel().getRecipient());
+
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new BitcoinPaymentChannel(null, new EmailNotificationChannel("markZac@gmail.com")));
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new BitcoinPaymentChannel("1041", null));
     }
 
     @Test
