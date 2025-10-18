@@ -29,8 +29,8 @@ public class Order {
             System.out.println(item.prepare());
             System.out.println();
         }
-        System.out.printf("Loyalty Discount: %f\n", status.getDiscount());
-        System.out.println("Total Bill: " + this.calculateBill(status));
+        System.out.printf("Loyalty Status: %s, Discount: %.3f\n", status.getStatus(), status.getDiscount());
+        System.out.printf("Total Bill: %.3f\n", this.calculateBill(status));
     }
 
     public double calculateBill(LoyaltyStatus status) {

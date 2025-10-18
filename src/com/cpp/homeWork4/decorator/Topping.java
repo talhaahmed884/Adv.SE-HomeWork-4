@@ -14,6 +14,6 @@ public abstract class Topping implements Item {
     }
 
     public String prepare() {
-        return String.format("%s\nAdding topping: %s, Price: %f", foodItem.prepare(), this.name, this.price);
+        return String.format("%s\nAdding topping: %s, Price: %.3f", foodItem.prepare(), this.name, this.price);
     }
 }

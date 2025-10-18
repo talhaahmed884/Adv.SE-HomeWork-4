@@ -13,6 +13,6 @@ public abstract class FoodItem implements Item {
     }
 
     public String prepare() {
-        return String.format("Preparing food: %s, Price: %f", this.name, this.price);
+        return String.format("Preparing food: %s, Price: %.3f", this.name, this.price);
     }
 }
