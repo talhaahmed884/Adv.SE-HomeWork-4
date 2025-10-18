@@ -9,6 +9,7 @@ public abstract class AbstractNotificationChannel implements NotificationChannel
         System.out.printf(ChannelMessages.NOTIFICATION_CHANNEL_MESSAGE.toString(), this.recipient, this.channelType);
     }
 
+    @Override
     public String getRecipient() {
         return this.recipient;
     }
